@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web Simple</title>
+    <link rel="stylesheet" href="./output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black" data-theme="light">
+
+    <!-- Encabezado con menú de navegación -->
+    <header class="bg-blue-600 text-white">
+        <div class="max-w-screen-xl mx-auto p-4 flex justify-between items-center">
+            <div class="text-lg font-bold">Mi Página Web</div>
+            <button class="theme-toggle" aria-label="Cambiar tema" accesskey="t">
+                <i class="fas fa-moon"></i>
+            </button>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-gray-300">Inicio</a>
+                <a href="#featured" class="hover:text-gray-300">Destacado</a>
+                <a href="#gallery" class="hover:text-gray-300">Galería</a>
+                <a href="#contact" class="hover:text-gray-300">Contacto</a>
+            </nav>
+            <button class="md:hidden text-white" id="menuToggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2 2h12a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 7h12a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM2 12h12a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                </svg>
+            </button>
+        </div>
+        <span class="hidden w-full  flex-col text-center md:hidden space-x-6" id="subMenu">
+            <a href="#home" class="hover:text-gray-300">Inicio</a>
+            <a href="#featured" class="hover:text-gray-300">Destacado</a>
+            <a href="#gallery" class="hover:text-gray-300">Galería</a>
+            <a href="#contact" class="hover:text-gray-300">Contacto</a>
+        </span>
+    </header>
+
+    <!-- Sección Principal con Contenido Destacado -->
+    <section id="featured" class="bg-gray-100 p-10 text-center">
+        <div class="max-w-screen-lg mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-black">Contenido Destacado</h2>
+            <p class="text-xl">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa, voluptate eaque. Nostrum, velit. Debitis
+                sit similique placeat quod, eius cupiditate alias molestias architecto, error quibusdam, doloribus illo
+                amet. Assumenda, iure.
+
+            </p>
+        </div>
+    </section>
+
+    <!-- Galería de Imágenes -->
+    <section id="gallery" class="p-10">
+        <div class="max-w-screen-xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6" id="subTitle">Galería de Imágenes</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="https://via.placeholder.com/300" alt="Imagen 1" class="w-full h-auto rounded-lg">
+                <img src="https://via.placeholder.com/300" alt="Imagen 2" class="w-full h-auto rounded-lg">
+                <img src="https://via.placeholder.com/300" alt="Imagen 3" class="w-full h-auto rounded-lg">
+                <img src="https://via.placeholder.com/300" alt="Imagen 4" class="w-full h-auto rounded-lg">
+                <img src="https://via.placeholder.com/300" alt="Imagen 5" class="w-full h-auto rounded-lg">
+                <img src="https://via.placeholder.com/300" alt="Imagen 6" class="w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página con Información de Contacto -->
+    <footer id="contact" class="bg-blue-600 text-white p-6 text-center">
+        <div class="max-w-screen-lg mx-auto">
+            <h3 class="text-2xl font-bold mb-4">Contacto</h3>
+            <p>Correo electrónico: user@dominio.com</p>
+            <p class="mt-2">Síguenos en nuestras redes sociales:</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-white hover:text-gray-300">Facebook</a>
+                <a href="#" class="text-white hover:text-gray-300">Instagram</a>
+                <a href="#" class="text-white hover:text-gray-300">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para menú móvil -->
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const nav = document.querySelector("nav");
+        const subMenu = document.getElementById("subMenu")
+
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+        const subTitle = document.getElementById("subTitle")
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            if(currentTheme == "dark"){
+                body.classList.remove("bg-white")
+                body.classList.add("bg-black")
+                subTitle.classList.remove("text-black")
+                subTitle.classList.add("text-white")
+                return
+            }
+            body.classList.remove("bg-black")
+            body.classList.add("bg-white")
+            subTitle.classList.remove("text-white")
+            subTitle.classList.add("text-black")
+
+        });
+
+        menuToggle.addEventListener("click", () => {
+            subMenu.classList.toggle("hidden")
+        });
+    </script>
+
+</body>
+
+</html>
